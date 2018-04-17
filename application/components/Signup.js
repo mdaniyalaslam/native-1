@@ -27,9 +27,9 @@ class SignupPage extends Component {
         let password = this.state.password 
         // console.log('signup called', email)
         // console.log('signup called', password)
-        this.props.signupToState(email)
+        this.props.signupToState(email,password)
         // this.props.navigation.navigate("home")
-        // console.log('worked', e)
+   
     }
 
     render() {
@@ -87,7 +87,7 @@ function mapDispatchToProp(dispatch) {
     return ({
 
 
-        signupToState: (email) => { dispatch(signupAction(email)) },
+        signupToState: (email, password) => { dispatch(signupAction(email,password)) },
 
     })
 }

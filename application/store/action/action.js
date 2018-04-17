@@ -3,15 +3,16 @@ import ActionTypes from '../constant/constant';
 import *as firebase from 'firebase';
 
 // Initialize Firebase
-var config = {
-  apiKey: "AIzaSyAkhH4uLWHVBCVd5wtIvK6l6p9BLTZXBLs",
-  authDomain: "todo-app-2411f.firebaseapp.com",
-  databaseURL: "https://todo-app-2411f.firebaseio.com",
-  projectId: "todo-app-2411f",
-  storageBucket: "todo-app-2411f.appspot.com",
-  messagingSenderId: "213722828277"
-};
-firebase.initializeApp(config);
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAM3MBoYRlRhmmbIwCw7QdZV4u05SS_yuA",
+    authDomain: "hello-js-world.firebaseapp.com",
+    databaseURL: "https://hello-js-world.firebaseio.com",
+    projectId: "hello-js-world",
+    storageBucket: "hello-js-world.appspot.com",
+    messagingSenderId: "916219320803"
+  };
+  firebase.initializeApp(config);
 
 
 
@@ -23,10 +24,21 @@ firebase.initializeApp(config);
 //   }
 // }
 
-export function signupAction(email){
-  console.log('action work', email)
+export function signupAction(email, password){
+  // console.log('action work', email)
   return dispatch => {
-    console.log('email', email)
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .then((r) => {
+        let db = firebase.database().ref('/').child(`users/${r.uid}`)
+        db.set(this.state).then((result) => {
+            console.log("Account Create Suuccessfully")
+            this.props.navigation.navigate("login")
+        })
+    })
+    .catch((error) => {
+        var errorMessage = error.message;
+        console.log(error)
+    });
     
   }
 }
