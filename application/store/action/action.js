@@ -25,20 +25,21 @@ import *as firebase from 'firebase';
 // }
 
 export function signupAction(email, password){
-  // console.log('action work', email)
+  console.log('action work', email, password)
   return dispatch => {
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-    .then((r) => {
-        let db = firebase.database().ref('/').child(`users/${r.uid}`)
-        db.set(this.state).then((result) => {
-            console.log("Account Create Suuccessfully")
-            this.props.navigation.navigate("login")
-        })
-    })
-    .catch((error) => {
-        var errorMessage = error.message;
-        console.log(error)
-    });
+    // firebase.auth().createUserWithEmailAndPassword(email, password)
+    // .then((res) => {
+    //   console.log(res)
+    //     let db = firebase.database().ref('/').child(`users/${res.uid}`)
+    //     db.set(this.state).then((result) => {
+    //         console.log("Account Create Suuccessfully")
+    //         this.props.navigation.navigate("login")
+    //     })
+    // })
+    // .catch((error) => {
+    //     var errorMessage = error.message;
+    //     console.log(error)
+    // });
     
   }
 }
