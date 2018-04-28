@@ -1,6 +1,6 @@
  const ActionTypes = {
 
-    SIGNUPUSER:'SIGNUPUSER'
+    SIGNUPERR:'SIGNUPERR'
     
 }
 

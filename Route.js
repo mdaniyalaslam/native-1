@@ -19,9 +19,9 @@ const Routing = StackNavigator({
   signup: {
     screen: SignupPage,
   },
-  // signin: {
-  //   screen: SigninPage
-  // }
+  signin: {
+    screen: SigninPage
+  }
 
 
 

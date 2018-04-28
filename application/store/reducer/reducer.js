@@ -3,18 +3,18 @@ import ActionTypes from '../constant/constant';
 const INITIAL_STATE = {
     // userName: '',
     // todos: []
-    email:'',
-    password:''
+    // email:'',
+    // password:''
+    errorMsg:''
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         
-        case ActionTypes.SIGNUPUSER:
+        case ActionTypes.SIGNUPERR:
             return ({
                 ...state,
-                email: action.payload.email,
-                password: action.payload.password
+                errorMsg: action.payload,
             })
 
         default:

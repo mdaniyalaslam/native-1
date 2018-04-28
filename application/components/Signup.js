@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 // import { View } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Card, CardItem, Body } from 'native-base'
+import { Container, Header, Content, Form, Item, Input, Label, Button, Text, Card, CardItem, Body, Toast } from 'native-base'
 import { signupAction, } from '../store/action/action';
 
 
@@ -13,7 +13,8 @@ class SignupPage extends Component {
         this.state = {
             email: "",
             password: "",
-            text:""
+            text:"",
+            error:''
         }
     }
     // _onChangeHandler(ev){
@@ -32,11 +33,20 @@ class SignupPage extends Component {
             password: this.state.password
         }
         this.props.signupToState(user)
-        // this.props.navigation.navigate("home")
+        this.setState({error:this.props.error})
+        console.log("chek",this.state.error)
+
+        // this.props.navigation.navigate("signin")
+        // Toast.show({
+        //     text: "this.props.error",
+        //     textStyle: { color: "red" },
+        //     buttonText: "Okay"
+        //   })
    
     }
 
     render() {
+        // console.log("error msg",this.props.error)
         return (
 
             <Container>
@@ -60,6 +70,7 @@ class SignupPage extends Component {
                                 <Button warning block rounded
                                     // onPress = {() => this.props.navigation.navigate("login")}>
                                     onPress={this._signup.bind(this)}
+                                    
                                     >
                                     <Text>Signup </Text>
                                 </Button>
@@ -84,7 +95,8 @@ class SignupPage extends Component {
 function mapStateToProp(state) { 
     return ({
         userName: state.root.userName,
-        stateTodos: state.root.todos
+        error: state.root.errorMsg
+
     })
 }
 function mapDispatchToProp(dispatch) {
