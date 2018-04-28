@@ -1,32 +1,22 @@
 import ActionTypes from '../constant/constant';
 
 const INITIAL_STATE = {
-    userName: '',
-    todos: []
+    // userName: '',
+    // todos: []
+    email:'',
+    password:''
 }
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case ActionTypes.USERNAME:
+        
+        case ActionTypes.SIGNUPUSER:
             return ({
                 ...state,
-                userName: action.payload
+                email: action.payload.email,
+                password: action.payload.password
             })
-        /////////////
-        case ActionTypes.ADDTODO:
-            // console.log('reducer', state.todos)
-            return ({
-                ...state,
-                todos: action.payload
-            })
-        ///////////////
-        case ActionTypes.EDITTODO:
-        state.todos[action.index].isEdit = true  
-        // console.log('edittodo', state.todos)
-            return({
-                ...state,
-                todos:state.todos.concat()
-            })
+
         default:
             return state;
     }

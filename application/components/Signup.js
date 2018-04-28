@@ -23,11 +23,15 @@ class SignupPage extends Component {
     // }
 
     _signup() {
-        let email = this.state.email 
-        let password = this.state.password 
+        // let email = this.state.email 
+        // let password = this.state.password 
         // console.log('signup called', email)
         // console.log('signup called', password)
-        this.props.signupToState(email,password)
+        let user = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        this.props.signupToState(user)
         // this.props.navigation.navigate("home")
    
     }
@@ -48,7 +52,7 @@ class SignupPage extends Component {
                                 </Item>
                                 <Item floatingLabel>
                                     <Label>Password</Label>
-                                    <Input onChangeText = {(passwordText)=> {this.setState({password : passwordText})}}
+                                    <Input secureTextEntry={true} onChangeText = {(passwordText)=> {this.setState({password : passwordText})}}
 
                                     />
                                 </Item>
@@ -77,7 +81,7 @@ class SignupPage extends Component {
 
 
 
-function mapStateToProp(state) {
+function mapStateToProp(state) { 
     return ({
         userName: state.root.userName,
         stateTodos: state.root.todos
@@ -87,7 +91,7 @@ function mapDispatchToProp(dispatch) {
     return ({
 
 
-        signupToState: (email, password) => { dispatch(signupAction(email,password)) },
+        signupToState: (user) => { dispatch(signupAction(user)) },
 
     })
 }
